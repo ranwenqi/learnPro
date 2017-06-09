@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function map(fn,arr){
+        for(var i=0;i<arr.length;i++){
+            arr[i]=fn(arr[i]);
+        }
+        return arr
+    }
+    var result=map(function(item){return item*2},[1,2,3,4]);
+    console.log(result);
+
+</script>
+</body>
+</html>

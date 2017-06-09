@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>memory-fn</title>
+</head>
+<body>
+<script>
+    //利用记忆函数去减少递归函数的重复调用
+    function memozi(fn){
+        var r = {}
+        return function(n){
+            if(r[n] == null){
+                r[n] = fn(n)
+                return r[n]
+            }else{
+                return r[n]
+            }
+        }
+    }
+
+    var fibfn = memozi(function(n){
+        if(n==0){
+            return 0
+        }else if(n==1){
+            return 1
+        }else{
+            return fibfn(n-1) + fibfn(n-2)
+        }
+    })
+    fibfn(50);
+</script>
+</body>
+</html>
