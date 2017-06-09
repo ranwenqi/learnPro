@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function isEmpty(arr){
+        return arr.length == 0
+    }
+    function lastFirst(arr){
+        return last(arr)[0]
+    }
+    function last(arr){
+        return arr[arr.length - 1]
+    }
+    function linecode(arr){
+        var r = []
+        for(var i=0;i<arr.length;i++){
+            var item = arr[i]
+            if(isEmpty(r)){
+                r.push([item])
+            } else if(item == lastFirst(r)){
+                last(r).push(item)
+            } else {
+                r.push([item])
+            }
+        }
+        return r
+    }
+
+    linecode([0,2,3,0,0,3,3,4,4])
+</script>
+</body>
+</html>
