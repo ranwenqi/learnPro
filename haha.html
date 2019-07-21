@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    #h{
+        width:500px;
+        padding: 50px;
+        font-size:20px;
+        background: #00aaaa;
+        color: orange;
+        text-align: center;
+        margin: 0 auto;
+        /*transform: translateY(600px);*/
+        transition: all 10s cubic-bezier(0.94, 0.26, 0.11, 0.58);
+    }
+    #h:hover
+    {
+        background: linear-gradient(red,yellow,blue);
+    }
+</style>
+<body>
+<button>Button0</button>
+<button>Button1</button>
+<button>Button2</button>
+<button>Button3</button>
+<button>Button4</button>
+
+<script>
+    // var btns = document.getElementsByTagName('button');
+    // // for(let i=0;i<=btns.length;i++){
+    // //     btns[i].onclick= function() {
+    // //         console.log(i);
+    // //     }
+    // // }
+    // for(var i=0;i<=btns.length;i++){
+    //     debugger;
+    //     (function (i){
+    //         btns[i].onclick= function() {
+    //             console.log(i);
+    //         }
+    //     }(i));
+    // }
+ //    function Cache () {
+ //        this.store = {};
+ //        this.get = function (key){
+ //            return this.store[key];
+ //        }
+ //        this.set = function (key, value) {
+ //            this.store[key] = value;
+ //        }
+ //    }
+ // const one = new Cache();
+ //    one.set('a', 1);
+ //    console.log(one.get('a'));
+ //    Promise.resolve()
+ //        .then(() => {
+ //            console.log('a');
+ //            return new Error('error');
+ //        })
+ //        .then((res)=>{
+ //            debugger;
+ //            console.log('b');
+ //            console.log('then:',res);
+ //        })
+ //        .catch((err) =>{
+ //            debugger;
+ //            console.log('c');
+ //            console.log('catch:',err);
+ //        })
+ //    extractStr('My name is:Jerry. My age is:12.') // => ['Jerry', '12']
+ //    function extractStr (str) {
+ //        let arr = [];
+ //        let name = str.slice(str.indexOf(':'), str.indexOf('.'));
+ //        arr.push(name);
+ //        return arr;
+ //    }
+ //    const extractStr = (str) => {
+ //        const ret = str.match(/:([^:\.])*?\./g) || []
+ //        return ret.map((subStr) => subStr.replace(/[:\.]/g, ''))
+ //    }
+ //    var n = extractStr('My name is:Jerry. My age is:12.');
+ //    console.log(n);
+ //    var data = { a: { b: { c: 'ScriptOJ' } } };
+ //    const safeGet = (o, path) => {
+ //        try {
+ //            return path.split('.').reduce((o, k) => o[k], o)
+ //        } catch (e) {
+ //            return void 666
+ //        }
+ //    };
+ //    console.log(safeGet(data, 'a.b.c.d'));
+
+    // var url = 'https://www.cnblogs.com/wangdahai/p/6221399.html?x=1&y=2';
+    // function handle (url) {
+    //     debugger;
+    //     let obj ={};
+    //     let str1 = url.slice(url.indexOf('?')+1);
+    //     let arr = str1.split("&");
+    //     arr.map(item => {
+    //         obj[item.split('=')[0]] = item.split('=')[1];
+    //     })
+    //     return obj;
+    // }
+    // console.log(handle(url));
+    var p = new Object();
+    p = {};
+    p.name = "李四";
+    p.age = 21;
+
+    p.setName = function (name) {
+        this.name = name;
+    }
+    p.setName("修改后的名字");
+    console.log(p.name+","+p.age);
+
+</script>
+</body>
+</html>

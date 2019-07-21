@@ -6,15 +6,28 @@
 </head>
 <body>
 <script>
-    function map(fn,arr){
-        for(var i=0;i<arr.length;i++){
-            arr[i]=fn(arr[i]);
-        }
-        return arr
+    // function map(fn,arr){
+    //     for(var i=0;i<arr.length;i++){
+    //         arr[i]=fn(arr[i]);
+    //     }
+    //     return arr
+    // }
+    // var result=map(function(item){return item*2},[1,2,3,4]);
+    // console.log(result);
+    function fn (arr) {
+        arr.map(i=>{
+            return i+2;
+        })
+        return arr;
     }
-    var result=map(function(item){return item*2},[1,2,3,4]);
-    console.log(result);
+ console.log(fn([1,2,3,4]));
+  // var a=[1,2,3,4];
+    var numbers = [4, 9, 16, 25];
 
+    var a = numbers.map((item) => {
+      return item+2;
+  });
+console.log(a);
 </script>
 </body>
 </html>

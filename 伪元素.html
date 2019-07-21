@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>伪元素</title>
+</head>
+<style>
+    .i:before{content:'';height:1px;background:black;width:100px;transform: rotate(45deg);display:inline-block}
+    .i:after{content:'';height:1px;background:black;width:100px;transform: rotate(150deg);display:inline-block}
+    .i{
+        height:100px;
+        width:100px;
+        border-radius: 50%;
+        background:palevioletred;
+    }
+    .tr{
+        /*width:0;*/
+        /*height:0;*/
+    }
+    .tr:before{
+        content:'';
+        border:50px solid pink;
+        border-right-color: orange;
+        border-bottom-color: orangered;
+        border-left-color: palegreen;
+
+    }
+    .tr:after{
+        content:'';
+        border:50px solid gold;
+    }
+</style>
+<body>
+<div class="i"></div>
+<div class="tr"></div>
+<script>
+
+</script>
+</body>
+</html>

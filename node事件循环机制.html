@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>rem_em</title>
+    <style>
+        body{
+            font-size:30px;
+            height:2000px;
+        }
+        .rem{
+            height:1rem;
+            width:1rem;
+            background: red;
+        }
+        .em{
+            height:1em;
+            width:1em;
+            background: greenyellow;
+        }
+    </style>
+</head>
+<body>
+<div class="rem"></div>
+<div class="em"></div>
+<script>
+    <!--Node的事件循环分为六个阶段
+
+    (1)timers计时器  执行setTimeout、setInterval的回调函数
+
+    (2)I/0 callbacks  执行I/O callback被延迟到下一阶段执行；
+
+(3)idle, prepare   队列的移动，仅内部使用
+
+    (4)poll 轮询阶段 这个阶段是用来执行和 IO 操作有关的回调的，Node会向操作系统询问是否有新的 IO 事件已经触发，然后会执行响应的事件回调。几乎所有除了 定时器事件、 setImmediate() 和 close callbacks 之外操作都会在这个阶段执行。
+
+(5)check 这个阶段会执行 setImmediate() 设置的任务
+
+    (6)close  执行close事件的callback，例如socket.on("close",func) 如果一个 socket 或 handle(句柄) 突然被关闭了，例如通过 socket.destroy() 关闭了，close事件将会在这个阶段发出。
+---------------------
+    作者：Month7
+    来源：CSDN
+    原文：https://blog.csdn.net/qq_29187355/article/details/84838328
+        版权声明：本文为博主原创文章，转载请附上博文链接！-->
+</script>
+</body>
+</html>

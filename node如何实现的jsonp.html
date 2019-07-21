@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>BFC</title>
+    <style type="text/css">
+
+    </style>
+</head>
+<body>
+jsonp就是利用script标签的src属性不受浏览器同源策略限制，
+我们将请求地址设为src属性值并在其中拼接一个callback参数，
+callback的值为一个回调函数的函数名应提前与后端约定好（
+比如下面的示例callback的值为getData），
+<span style="color:palevioletred">然后由后端返回该函数的调用,res.end(callback(data))这样的形式</span>
+并将对应数据设为该回调函数的参数，前端通过调用这个回调函数，取得其中传入的参数，即可拿到后端传回来的数据
+
+</body>
+</html>

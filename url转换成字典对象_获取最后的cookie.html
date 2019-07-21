@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>边框0.5px实现方法</title>
+    <style type="text/css">
+        /*标准1px*/
+        .b1{
+            height: 10px;
+            border: 1px solid #ff0000;
+        }
+        /*1.利用渐变-百度糯米*/
+        .a1{
+            height: 1px;
+            margin-top: 20px;
+            background-image: linear-gradient(0deg, #f00 50%, transparent 50%);
+            /*颜色后面的百分比指的是颜色占的比例，这样就没有渐变色了*/
+            /*background-image: linear-gradient(#f00, transparent);*/
+        }
+        /*2.缩放-发虚-京东*/
+        .a2{
+            height: 1px;
+            margin-top: 20px;
+            background-color: #f00;
+            -webkit-transform: scaleY(.5);
+            transform:scaleY(.5);
+        }
+        /*4条边框都需要*/
+        .scale-half {
+            margin-top: 20px;
+            height: 100px;
+            border:1px solid #f00;
+            -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
+            -webkit-transform: scale(.5, .5);
+            transform: scale(.5, .5);
+        }
+        .a3 {
+            margin-top:20px;
+            height:1px;
+            border: 1px solid black;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div class="b1"></div>
+<div class="a1"></div>
+<div class="a2"></div>
+<div class="scale-half"></div>
+<div class="a3"></div>
+</body>
+<script>
+    var url = "http://www.akmsg.com/WebDemo/URLParsing.html#top?username=admin&pwd=123456";
+    //分割url，可以采取截取substring的方式
+    function urlSearch(href) {
+        let name, value;
+        let str = href; //取得整个地址栏
+        let num = str.indexOf("?");
+        str = str.substr(num + 1); //取得所有参数
+        let arr = str.split("&"); //各个参数放到数组里
+        let json = {};
+        for (let i = 0; i < arr.length; i++) {
+            num = arr[i].indexOf("=");
+            if (num > 0) {
+                name = arr[i].substring(0, num);
+                value = arr[i].substr(num + 1);
+                json[name] = value;
+            }
+        }
+        return json;
+    }
+    // console.log(urlSearch(url));
+    //切割url可以采用两次分割的方式
+    function getHashParameters(key) {
+        debugger;
+        var arr =key.split('?')[1].split('&')
+        var params = {};
+        for (var i = 0; i < arr.length; i++) {
+            var data = arr[i].split('=');
+            if (data.length === 2) {
+                params[data[0]] = data[1]
+            }
+        }
+        return params
+    }
+    function getHashParameter(key) {
+        var params = getHashParameters(key);
+        return params[key]
+    }
+    // getHashParameter(url);
+    //截取cookie的最后的一个key值
+    var cookie ='name=value;path=path;domain=domain';
+    function parseCookie(cookie) {
+        debugger;
+            var pattern = /([^=]+)=([^;]+);?\s*/g,
+            result,
+            value = {};
+        while((result = pattern.exec(cookie)) != null) {
+            value[result[1]] = result[2];
+        }
+        return value;
+    }
+    parseCookie(cookie);
+</script>
+</html>

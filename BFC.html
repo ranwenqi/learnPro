@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>BFC</title>
+    <style type="text/css">
+        .container {
+            background-color: red;
+            overflow: hidden; /* creates a block formatting context */
+            margin-top:10px;
+            height:200px;
+            width:200px;
+        }
+        .s1 {
+            background-color: lightgreen;
+            margin-top:20px;
+            height:100px;
+            width:100px;
+        }
+        .container {
+            background-color: red;
+            overflow: hidden; /* creates a block formatting context */
+        }
+        p {
+            background-color: lightgreen;
+            margin: 10px 0;
+        }
+        .newBFC {
+            overflow: hidden;  /* creates new block formatting context */
+        }
+        .container1 {
+            background-color: green;
+            overflow: hidden; /* creates block formatting context */
+        }
+        .container1 div {
+            float: left;
+            background-color: lightgreen;
+            margin: 10px;
+        }
+        .column {
+            width: 31.33%;
+            background-color: green;
+            float: left;
+            margin: 0 1%;
+        }
+        /*  Establishing a new block formatting
+            context in the last column */
+        .column:last-child {
+            float: none;
+            overflow: hidden;
+        }
+        .container4{
+            height:200px;
+            width:300px;
+            margin-top:100px;
+            overflow: hidden;
+        }
+        .container4 .floated{
+            width:80px;
+            height:80px;
+            background:red;
+            float:left;
+        }
+    </style>
+</head>
+<body>
+<!--什么是BFC：块级格式上下文，通俗来说就是一个独立的渲染区域-->
+<!--生成BFC的条件有四项：1.position的值不是static或者relative。
+2.float的值不为none.
+3.overflow的值不为visible
+4.display的值inline-block、table-cell、flex、table-caption或者inline-flex-->
+<!--情景1：父子元素margin重叠-->
+<div class="container">
+    <div class="s1">Sibling 1</div>
+</div>
+<div class="container">
+    <p>Sibling 1</p>
+    <p>Sibling 2</p>
+    <div class="newBFC">
+        <p>Sibling 3</p>
+    </div>
+</div>
+<div class="container1">
+    <div>Sibling</div>
+    <div>Sibling</div>
+</div>
+<div class="container4">
+    <div class="floated">
+        Floated div
+    </div>
+    <p>
+        Quae hic ut ab perferendis sit quod architecto,
+        dolor debitis quam rem provident aspernatur tempora
+        expedita.
+    </p>
+</div>
+</body>
+</html>

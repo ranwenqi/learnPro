@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>菜鸟教程(runoob.com)</title>
+    <style>
+        #SomeElementYouWantToAnimate{
+            height:100px;
+            width:100px;
+            background: #00aaaa;
+        }
+    </style>
+</head>
+<body>
+
+<p>点击按钮获取数组元素的平方根。</p>
+<button onclick="myFunction()">点我</button>
+<p id="demo"></p>
+<div id="SomeElementYouWantToAnimate"></div>
+<script>
+    // var numbers = [4, 9, 16, 25];
+    // function myFunction() {
+    //     x = document.getElementById("demo");
+    //     // x.innerHTML = numbers.map(Math.sqrt);
+    //     x.innerHTML = numbers.map((item) => {
+    //         return item+1;
+    //     });
+    // }
+    // var kvArray = [{key: 1, value: 10},
+    //     {key: 2, value: 20},
+    //     {key: 3, value: 30}];
+    // function reFomatted (arr) {
+    //     var obj = {};
+    //     return arr.map((item) => {
+    //         return obj[item.key] = item.key
+    //     })
+    // }
+    // console.log(reFomatted(kvArray));
+    // var start = null;
+    // var element = document.getElementById('SomeElementYouWantToAnimate');
+    // element.style.position = 'absolute';
+    //
+    // function step(timestamp) {
+    //     debugger;
+    //     if (!start) start = timestamp;
+    //     var progress = timestamp - start;
+    //     element.style.left = Math.min(progress / 10, 200) + 'px';
+    //     if (progress < 2000) {
+    //         window.requestAnimationFrame(step);
+    //     }
+    // }
+    //
+    // window.requestAnimationFrame(step);
+
+    // let count = 0;
+    // function step1(time) {
+    //     count++;
+    //     element.style.left = count + 'px';
+    //     window.requestAnimationFrame(step1);
+    // }
+    // var a = [10, 2, 4, 15, 9];
+    //
+    // console.log(Math.max.apply(null, a));
+    // 15
+
+    function handle (arr) {
+        let [re,t]=[0,0];
+        for(let i=0;i<arr.length;i++) {
+            for(let j=0;j<arr.length;j++){
+                if(arr[i]>arr[j]){
+                    t=arr[j];
+                    arr[j]=arr[i];
+                    arr[i] = t;
+            }
+        }
+        re=arr[0]-arr[arr.length-1];
+        console.log(arr);
+        return re;
+    }}
+    console.log(handle([8,3,5,2]));
+</script>
+
+</body>
+</html>

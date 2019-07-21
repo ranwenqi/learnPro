@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p id="content"> 请等三秒钟!</p>
+<button>Button0</button>
+<button>Button1</button>
+<button>Button2</button>
+<button>Button3</button>
+<button>Button4</button>
+<script>
+    function f1(){
+        var n = 123;
+        function f2(){    //f2是一个闭包
+            alert(n)
+        }
+        return f2;
+    }
+    f1()();
+
+    // https://www.jianshu.com/p/132fb6d485ee？
+    // 闭包经典使用场景一：通过循环给页面上多个dom节点绑定事件
+    var btns = document.getElementsByTagName('button');
+    // for(var i = 0, len = btns.length; i < len; i++) {
+    //     btns[i].onclick = function() {
+    //         alert(i);
+    //     }
+    // }
+    for(var i = 0, len = btns.length; i < len; i++) {
+        (function(i) {
+            btns[i].onclick = function() {
+                alert(i);
+            }
+        }(i))
+    }
+
+    // 闭包使用场景二：封装变量
+    var mult = function(){
+        debugger;
+        var cache = {};
+        var calculate = function() {
+            var a = 1;
+            for(var i = 0, len = arguments.length; i < len; i++) {
+                a = a * arguments[i];
+            }
+            return a;
+        }
+        return function() {
+            var args = Array.prototype.join.call(arguments, ',');
+            if(args in cache) {
+                return cache[args];
+            }
+
+            return cache[args] = calculate.apply(null, arguments);
+        }
+    }();
+    mult(1,2,3,4,5);
+
+//    闭包使用场景三：延续局部变量的寿命
+    var report = function(src) {
+        var img = new Image();
+        img.src = src;
+    }
+    report('http://xxx.com/getUserInfo');
+    var report = (function() {
+        var imgs = [];
+        return function(src) {
+            var img = new Image();
+            imgs.push(img);
+            img.src = src;
+        }
+    }())
+</script>
+</body>
+</html>

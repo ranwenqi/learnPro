@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>symbol_set_map</title>
+    <style>
+
+    </style>
+</head>
+<body>
+
+<script>
+let s1 = Symbol('alice');
+let s2 = Symbol('foo');
+console.log(s1===s2);
+let a1 = {};
+a1[s1]=1;
+a1.s2=2;
+console.log(a1);
+
+const a = {
+    key1: Symbol.for('foo'),
+    key2: 10
+};
+console.log(a);
+// console.log(JSON.stringify(a, (k,v) => {
+//     typeof k == 'symbol' ? `Symbol.for${Symbol.keyFor(v)}`: v;
+// }))
+console.log(JSON.stringify(a, (k,v) => typeof v === 'symbol' ? `Symbol.for(${Symbol.keyFor(v)})` : v));
+
+function set() {
+    let set = new Set([1,2,2,2,3]);
+    console.log(Array.from(set, item => item*2));
+    // console.log(new Array(set));
+}
+set();
+//set为什么可以去重？使用hashCode 与equals两个方法
+</script>
+</body>
+</html>

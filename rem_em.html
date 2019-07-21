@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>rem_em</title>
+    <style>
+        body{
+            font-size:30px;
+        }
+        .rem{
+            height:1rem;
+            width:1rem;
+            background: red;
+        }
+        .em{
+            height:1em;
+            width:1em;
+            background: greenyellow;
+        }
+    </style>
+</head>
+<body>
+<div class="rem"></div>
+<div class="em"></div>
+<!--<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+-->
+<!--DPR dpr问题是移动端web开发上需要注意的问题，用大白话说就是，代码中所设置的像素值实际上是虚拟像素，手机屏幕上的像素实际为物理像素，原始的手机，虚拟像素与物理像素是1:1覆盖的，但随着移动端屏幕的技术发展，屏幕尺寸不变的情况下，密度却增大了，就会出现逻辑1像素覆盖了多个物理像素，就造成了不清晰的问题。
+dpr（devicePixelRatio）就是即物理像素/逻辑像素
+在美工切图的时候需要切1倍、2倍、3倍图，也是因为这个问题。而在移动web开发中，也需要根据不同屏幕做不同的处理，目的是尽可能让逻辑像素与物理像素一一对应，这样才能达到最清晰的状态。
+在js中可以获取dpr的值
+
+window.devicePixelRatio
+
+https://blog.csdn.net/thatway_wp/article/details/79075920
+-->
+<script>
+
+</script>
+</body>
+</html>
