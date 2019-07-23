@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>提高网页响应速度的方法总结</title>
+</head>
+<body>
+<div id="wmd-preview" class="wmd-preview"><div class="md-section-divider"></div><div class="md-section-divider"></div><h1 data-anchor-id="h8z5" id="提高网页响应速度的方法总结">提高网页响应速度的方法总结</h1><p data-anchor-id="occ3"><code>求职应聘</code></p><hr><ol data-anchor-id="bb69">
+<li><p>关于DNS解析</p>
+
+<ul><li>DNS Prefetch:存在多个子站或者CDN站点时使用</li>
+<li>DNS智能解析：由DNS解析服务器来做</li>
+<li>DNS Cache：浏览器已做</li></ul></li>
+<li><p>减少文件总量</p>
+
+<ul><li>压缩JS：慎用动态函数解析，包括evel、new Function、setTimeout字符量、setInterval字符量，不仅不安全、而且会导致一些压缩工具（比如Google Closure Compiler,GCC）进行高级压缩后运行出错。</li>
+<li>压缩CSS和HTML。</li>
+<li>压缩图片：尽量使用png格式；有损或无损压缩；Photoshop存储为Web格式；去掉Exif信息和jpg缩略图。</li>
+<li>压缩SWF：如果是以FWS开头的文件应压缩成CMS开头的。</li></ul></li>
+<li><p>减少网络请求次数及总流量</p>
+
+<ul><li>合并JS和CSS。</li>
+<li>合并小图片：使用时使用CSS中background-position或者clip来定位或剪贴。</li>
+<li>网站启用gzip压缩。</li>
+<li>合理使用cookies：不设置过多过大，不随意扩大domain（特别注意是否有.）和path，应当设置过期时间，建议适当情况下以LocalStorage或者SessionStorage代之。<a href="http://blog.csdn.net/southflow/article/details/9342385" target="_blank">http://blog.csdn.net/southflow/article/details/9342385</a>链接<a href="http://www.cnblogs.com/tanhehe/p/4236021.html" target="_blank">http://www.cnblogs.com/tanhehe/p/4236021.html</a>链接<a href="http://www.cnblogs.com/mfc-itblog/p/5938851.html" target="_blank">http://www.cnblogs.com/mfc-itblog/p/5938851.html</a></li>
+<li>按需（异步、延迟）加载JS、CSS和图片：JS使用defer、async及动态创建script等，如果需要控制执行顺序，可使用LABjs或requireJS；CSS在link中使用includes等；图片使用Lazyload等。<a href="http://www.jb51.net/article/34491.htm" target="_blank">http://www.jb51.net/article/34491.htm</a></li>
+<li>利用浏览器网页缓存：除首页外，合并的JS、CSS文件以及图片应单独存放，不应整合到HTML页面中；使用合理的cache-control、ETag和Last-Modified等。</li>
+<li>使用HTML5应用程序缓存（Application Cache）：单页Web应用（Single Page Web Application，SPA）可以通过mainfest文件管理需要缓存的文件。</li>
+<li>使用HTML5请求响应缓存（Cache Storage）：多页Web应用（Multiple Pages Web Application，MPA）可以使用Service Worker缓存Request和Response对象，充当浏览器内正向代理服务器。</li>
+<li>减少重定向次数。</li>
+<li>使用图片地图：HTML中的map标签对图片的不同区域设置热点，避免请求大量图片。</li>
+<li>使用内联图片：在src中直接写入base64格式的图片数据。</li></ul></li>
+<li><p>提高访问速度及效率</p>
+
+<ul><li>使用OSS+CDN：OSS（Object Storage Service，对象存储）作为静态资源源站，搭配（Content Delivery Network，内容分发网络）实现访问加速。</li>
+<li>使用多域名突破浏览器同一域名允许的最大并发请求资源数，同时也减少了cookies的传输。</li>
+<li>动态页面静态化。</li>
+<li>服务端优化：采用异步非阻塞模型、动态数据缓存等。</li>
+<li>定期清理网站死链及多余文件。</li>
+<li>使用负载均衡策略。</li></ul></li>
+<li><p>提高浏览器响应速度</p>
+
+<ul><li>首页优化：css整合进title，js整合到页面底部，首屏ajax数据可以提前写入script中。</li>
+<li>减少DOM元素个数：使用script或textarea封装暂时不用的模板。</li>
+<li>link Prefetch资源预加载：注意不能跨域，而且会影响站点统计。</li>
+<li>img标签表明宽高：减少浏览器计算图片宽高的运算。</li></ul></li>
+</ol></div>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // Cache是一个缓存类，使用时先在new方法中注册获取数据的方法，然后可通过get方法获取数据，
+    // 并且只有第一次调用get会真正调用new中注册的方法获取数据，以后都直接从缓存中返回。
+
+    function Cache () {
+        this.store = {}
+    }
+
+    Cache.prototype.add = function (name, fn) {
+        if (!name || !fn || typeof fn !== 'function') {
+            return
+        }
+        this.store[name] = {name, fn, data: {}}
+    }
+
+    Cache.prototype.get = function (name, key) {
+        debugger;
+        const self = this.store[name]
+        key = key || 1;
+        if (self.data[key]) {
+            return Promise.resolve(self.data[key])
+        }
+        return self.fn(key).then(data => {
+            self.data[key] = data
+            return data
+        })
+    }
+
+    Cache.prototype.clear = function (name, key) {
+        this.store[name].data[key] = null
+    }
+
+    Cache.prototype.clearAll = function (name) {
+        this.store[name].data = {}
+    }
+
+    // 1.下面的代码说明Cache的实现存在一个bug，尝试修复它
+
+    const c = new Cache()
+
+    c.add('foo', function (key) {
+        return Promise.resolve([1])
+    })
+    c.get('foo').then(
+        list0 => {
+            console.log(list0)
+            list0.push(2)
+            return c.get('foo')
+        }).then(
+        list1 => {
+            console.log(list1)
+            list1.push(3)
+            return c.get('foo')
+        }).then(
+        list2 => {
+            console.log(list2)
+        })
+
+    // 2.对以上代码提出一些改进意见
+    // 3.当同时对同一个name，同一个key发起多个get，且缓存不存在时，会导致fn多次执行，优化这个问题
+</script>
+</body>
+</html>

@@ -7,8 +7,9 @@
 <body>
 <script>
     //利用记忆函数去减少递归函数的重复调用
+    // 用递归求第10个数，它等于前2数之和，如{1，1，2，3，5}
     function memozi(fn){
-        var r = {}
+        var r = {};
         return function(n){
             if(r[n] == null){
                 r[n] = fn(n)
@@ -18,7 +19,6 @@
             }
         }
     }
-
     var fibfn = memozi(function(n){
         if(n==0){
             return 0
@@ -27,8 +27,30 @@
         }else{
             return fibfn(n-1) + fibfn(n-2)
         }
+    });
+    // fibfn(50);
+    var fi = memozi(function(n){
+        if(n==0){
+            return 0;
+        }else if(n==1){
+            return 1;
+        }else if(n==2) {
+            return 2;
+        }else {
+            return fi(n-1)*fi(n-2);
+        }
     })
-    fibfn(50);
+    // fi(6);
+    // fibfn(40);
+    // var count=0;
+    // var fib=function(n){
+    //     count++;
+    //     return n<2?n:fib(n-1)+fib(n-2);
+    // };
+    // for(var i=0;i<=3;i++){
+    //     console.log(fib(i))
+    // }
+    // console.log('count:'+count);
 </script>
 </body>
 </html>
