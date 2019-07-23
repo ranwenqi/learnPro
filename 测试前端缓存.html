@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试前端缓存</title>
+    <style>
+        body{
+            font-size:30px;
+        }
+        .rem{
+            height:1rem;
+            width:1rem;
+            background: red;
+        }
+        .em{
+            height:1em;
+            width:1em;
+            background: greenyellow;
+        }
+    </style>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+    </script>
+</head>
+<body>
+<div class="rem"></div>
+<div class="em"></div>
+
+<script>
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+
+
+        if( xhr.readyState == 4){
+
+
+            if( xhr.status >= 200 && xhr.status < 300 || xhr.status == 304){
+
+                // info.innerHTML = xhr.responseText;
+                console.log(xhr.responseText);
+
+            }
+
+        }
+
+    };
+
+    xhr.open("get","http://127.0.0.1:8888");
+    // xhr.setRequestHeader('cache-control', 'public, max-age=1209600');
+
+    xhr.send(null);
+</script>
+</body>
+</html>

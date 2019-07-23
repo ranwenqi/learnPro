@@ -28,8 +28,18 @@ const promisefy = function(file) {
         });
     })
 }
-promisefy('get与post的区别.txt').then(data => {
+promisefy('package-lock.json').then(data => {
     console.log(data);
+    http.createServer(function (request, response) {
+
+        // 发送 HTTP 头部
+        // HTTP 状态值: 200 : OK
+        // 内容类型: text/plain
+        //'Access-Control-Allow-Origin': '*'解决跨域的问题
+        response.writeHead(200, {'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': '*', 'Cache-Control': 'max-age=86400', 'ETag': 'aaa'});
+        // response.setHeader('ETag', 'ranwenqi');
+        response.end(data);
+    }).listen(8888);
 });
 
 
