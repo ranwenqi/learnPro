@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>promise算法面试题</title>
+</head>
+
+<body>
+  <!--http://www.imooc.com/article/257372#comment  -->
+</body>
+<script>
+  // const promise = new Promise((resolve, reject) => {
+  //     console.log(1);
+  //     resolve();
+  //     console.log(2);
+  // })
+  //
+  // promise.then(() => {
+  //     console.log(3);
+  // })
+  //
+  // console.log(4);
+  // function red() {
+  //     console.log('red');
+  // }
+  // function green() {
+  //     console.log('green');
+  // }
+  // function yellow() {
+  //     console.log('yellow');
+  // }
+  // setInterval(red, 3000);
+  // setInterval(green, 2000);
+  // setInterval(yellow, 1000);
+  // function red() {
+  //     console.log('red');
+  // }
+  // function green() {
+  //     console.log('green');
+  // }
+  // function yellow() {
+  //     console.log('yellow');
+  // }
+  //
+  // var light = function (timmer, cb) {
+  //     return new Promise(function (resolve, reject) {
+  //         setTimeout(function () {
+  //             cb();
+  //             resolve();
+  //         }, timmer);
+  //     });
+  // };
+  //
+  // var step = function () {
+  //     Promise.resolve().then(function () {
+  //         return light(3000, red);
+  //     }).then(function () {
+  //         return light(2000, green);
+  //     }).then(function () {
+  //         return light(1000, yellow);
+  //     }).then(function () {
+  //         step();
+  //     });
+  // }
+  //
+  // // step();
+  // const timeout = ms => new Promise((resolve, reject) => {
+  //     setTimeout(() => {
+  //         resolve();
+  //     }, ms);
+  // });
+  //
+  const ajax1 = () => timeout(2000).then(() => {
+    console.log('1');
+    return 1;
+  });
+
+  const ajax2 = () => timeout(1000).then(() => {
+    console.log('2');
+    return 2;
+  });
+
+  const ajax3 = () => timeout(3000).then(() => {
+    console.log('3');
+    return 3;
+  });
+  // // ajax1();
+  // // ajax2();
+  // let data = [];
+  // ajax1().then((res) => {
+  //     console.log('ajax1res', res);
+  //     let a = ajax2();
+  //     new Promise((resolve, reject) => {
+  //         resolve(a);
+  //     })
+  // }).then(res => {
+  //
+  //     console.log('====ajax2res', res);
+  // })
+
+  // const mergePromise = function(ajax1,ajax2,ajax3) {
+  //     let data = [];
+  //     return new Promise(function(resolve,reject) {
+  //         resolve(ajax1());
+  //     }).then(function(num){
+  //         data[0] = num;
+  //         ajax2();
+  //     }).then(function(res){
+  //         data[1] = res;
+  //     } ).then(function(res) {
+  //         data[2] = res;
+  //     }).then(function() {
+  //         return data;
+  //     })
+  // }
+  // mergePromise(ajax1, ajax2, ajax3).then((data) => {
+  //     console.log(data);
+  // });
+  // const timeout = ms => new Promise((resolve, reject) => {
+  //     setTimeout(() => {
+  //         resolve();
+  //     }, ms);
+  // });
+  //
+  // const ajax1 = () => timeout(2000).then(() => {
+  //     console.log('1');
+  //     return 1;
+  // });
+  //
+  // const ajax2 = () => timeout(1000).then(() => {
+  //     console.log('2');
+  //     return 2;
+  // });
+  //
+  // const ajax3 = () => timeout(2000).then(() => {
+  //     console.log('3');
+  //     return 3;
+  // });
+  //
+  // const mergePromise = ajaxArray => {
+  //     // 在这里实现你的代码
+  //
+  // };
+  //
+  // mergePromise([ajax1, ajax2, ajax3]).then(data => {
+  //     console.log('done');
+  //     console.log(data); // data 为 [1, 2, 3]
+  // });
+  //    如何让两个异步操作按顺序执行
+  //     ajax1();
+  //     ajax2();
+  //     Promise.resolve().then(() => {
+  //         ajax1();
+  //     }).then(() => {
+  //         ajax2();
+  //     })
+  //     new Promise(function(resolve, reject) {
+  //         resolve(1)
+  //     }).then(res => {
+  //         console.log(res);
+  //         let a = 'a';
+  //         return new Promise(function(resolve, reject) {
+  //             setTimeout(function() {
+  //                 a = 'settimeout';
+  //             }, 1);
+  //             resolve(a);
+  //         })
+  //     }).then((res) => {
+  //         console.log('=====a', res);
+  //     })
+
+
+  // data.push(res);
+  // return data;
+  // });
+  // })
+  //
+  // // 遍历结束后，返回一个 Promise，也就是 sequence， 他的 [[PromiseValue]] 值就是 data，
+  // // 而 data（保存数组中的函数执行后的结果） 也会作为参数，传入下次调用的 then 方法中。
+  // return sequence;
+
+
+  // const first = () => (new Promise((resolve, reject) => {
+  //     console.log(3);
+  //     let p = new Promise((resolve, reject) => {
+  //         console.log(7);
+  //         setTimeout(() => {
+  //             console.log(5);
+  //             resolve(6);
+  //         }, 0)
+  //         resolve(1);
+  //     });
+  //     resolve(2);
+  //     p.then((arg) => {
+  //         console.log(arg);
+  //     });
+  //
+  // }));
+  //
+  //     first().then((arg) => {
+  //         console.log(arg);
+  //     });
+  //     console.log(4);
+  //     Promise.all([ajax1,ajax2, ajax3]).then((res) => {
+  //         console.log(res);
+  //     })
+  var array = [1, [2, [3, 4], 5], 6];
+
+  function flatten(array) {
+    return array.reduce(function (arr, item) {
+      return (Object.prototype.toString.call(item) === '[object Array]' ?
+        Array.prototype.push.apply(arr, flatten(item)) :
+        arr.push(item), arr);
+    }, []);
+  }
+  // console.log(flatten(array));
+  //     var arr = [1,2,3,4];
+  //     let a = arr.reduce(function(accumalation, currentValue, current_index, array){
+  //         return (accumalation.push(currentValue-1), accumalation);
+  //     }, []);
+  // console.log(a);
+  //     function b () {
+  //         let tem = 2;
+  //         return (tem+1, tem+2);
+  //     }
+  //     console.log(b());
+  //     let arr1 = [1];
+  //     let arr2 = [2,3];
+  //     debugger;
+  //     Array.prototype.push.apply(arr1, arr2);
+  //     console.log(arr1);
+  //     let max = [1,2,3,4,9,2,1];
+  //     console.log(Math.min.apply(Math,max));
+  //  promise生成函数
+  function log(n, delay, param) {
+    return function () {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          console.log(n);
+          resolve(param);
+        }, delay);
+      })
+    }
+  }
+  // Promise.resolve()
+  //     .then(function() {
+  //         return new Promise((resolve, reject) => {
+  //             setTimeout(() => {
+  //                 console.log(1);
+  //                 resolve();
+  //             }, 300);
+  //         })
+  //     })
+  //     .then(log(2,0))
+  //     .then(log(3,500))
+  //     .then(log(4,100));
+
+
+  function logg(n, delay, param) {
+    return new Promise(function (resolve, reject) {
+      setTimeout(function () {
+        console.log(n);
+        resolve(param);
+      }, delay);
+    })
+  }
+
+  // Promise.resolve().then(() =>
+  //     logg(1,300)
+  // ).then(() =>
+  //     logg(2,0)
+  // )
+
+
+  [log(1, 300), log(2, 0), log(3, 500), log(4, 100)].reduce((accumulator, value) => {
+    return accumulator.then(function () {
+
+    })
+  }, Promise.resolve());
+  // Promise.all([logg(1,200,1), logg(2,0,2)]).then((res) => {
+  //     console.log(res);
+  // })
+  // [logg(1,200,1), logg(2,0,2), logg(3,100,3)].reduce(function(accumulator, item) {
+  //     return accumulator.then(function(){return new Promise(function(resolve,reject) {
+  //         setTimeout(function() {
+  //             console.log(1);
+  //             resolve(param);
+  //         }, 2000);
+  //     })});
+  // }, Promise.resolve())
+
+
+  // [log(1, 300),log(2, 0),log(3, 500),log(4, 100)].reduce((accumulator, value) => {
+  //     return accumulator.then(value)
+  // },Promise.resolve());
+
+  // new Promise(function(resolve,reject) {
+  //     setTimeout(function(){
+  //         console.log(1);
+  //         resolve();
+  //     },5000)
+  // }).then(() => {
+  //     setTimeout(()=>{
+  //         console.log(2)
+  //     },2000);
+  // })
+  // 实现并发
+  var urls = [
+    'https://www.kkkk1000.com/images/getImgData/getImgDatadata.jpg',
+    'https://www.kkkk1000.com/images/getImgData/gray.gif',
+    'https://www.kkkk1000.com/images/getImgData/Particle.gif',
+    'https://www.kkkk1000.com/images/getImgData/arithmetic.png',
+    'https://www.kkkk1000.com/images/getImgData/arithmetic2.gif',
+    'https://www.kkkk1000.com/images/getImgData/getImgDataError.jpg',
+    'https://www.kkkk1000.com/images/getImgData/arithmetic.gif',
+    'https://www.kkkk1000.com/images/wxQrCode2.png'
+  ];
+
+  // 如果你需要复制代码运行下，请把 下面代码 中 on load 和 on error 中间的空格删掉
+  // 不要问我为什么这样做，我也很尴尬啊...
+  function loadImg(url) {
+    console.log('loadImg');
+    return new Promise((resolve, reject) => {
+      const img = new Image()
+      img.onload = function () {
+        console.log('一张图片加载完成');
+        resolve();
+      }
+      img.onError = reject
+      img.src = url
+      let img = document.createElement("img").src = url;
+      document.getElementsByTagName('body').appendChild('img');
+    })
+  };
+
+
+  function limitLoad(urls, handler, limit) {
+    // 对数组做一个拷贝
+    const sequence = [].concat(urls)
+    let promises = [];
+
+    //并发请求到最大数
+    promises = sequence.splice(0, limit).map((url, index) => {
+      // 这里返回的 index 是任务在 promises 的脚标，用于在 Promise.race 之后找到完成的任务脚标
+      return handler(url).then(() => {
+        return index
+      });
+    });
+
+    // 利用数组的 reduce 方法来以队列的形式执行
+    return sequence.reduce((last, url, currentIndex) => {
+      return last.then(() => {
+        // 返回最快改变状态的 Promise
+        return Promise.race(promises)
+      }).catch(err => {
+        // 这里的 catch 不仅用来捕获 前面 then 方法抛出的错误
+        // 更重要的是防止中断整个链式调用
+        console.error(err)
+      }).then((res) => {
+        // 用新的 Promise 替换掉最快改变状态的 Promise
+        promises[res] = handler(sequence[currentIndex]).then(() => {
+          return res;
+        });
+      })
+    }, Promise.resolve()).then(() => {
+      return Promise.all(promises)
+    })
+
+  }
+  limitLoad(urls, loadImg, 3)
+</script>
+
+</html>

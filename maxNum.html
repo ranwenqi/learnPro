@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>大数相乘</title>
+</head>
+<body>
+  
+
+  <script>
+//     输入两个字符串，输出一个字符串，输入的字符串都是整数类型，位数很大，把这个字符串相乘的结果输出，即大数相乘的算法，不允许使用系统函数，只使用基本的循环与加减乘除即可，40分钟
+// 例如样本“123456789111111”*“987654321111111"
+function multiply(str1, str2) {
+  let arr1 = str1.split('');
+  let arr2 = str2.split('');
+  let result=[];
+  for(let h = 0; h<(arr1.length+arr2.length-1); h++) {
+    result[h] = 0;
+  }
+  let i = 0;
+  while(i < arr1.length) {
+    arr1[i] = arr1[i] - 0;
+    i++;
+  }
+  let j = 0;
+  while(j < arr2.length) {
+    arr2[j] = arr2[j] - 0;
+    j++;
+  }
+
+  for(let n = 0; n < arr1.length; n++) {
+    for(let m = 0; m < arr2.length; m++) {
+      result[m+n] += arr1[n]*arr2[m]
+    }
+  }
+  for(let k = result.length-1; k > 0; k--) {
+    result[k-1] += Math.floor(result[k]/10);
+    result[k] = Math.floor(result[k]%10);
+  }
+  let resultStr = '';
+  for(let f = 0; f < result.length; f++) {
+    resultStr += '' + result[f];
+  }
+  return resultStr;
+}
+console.log(multiply('12345', '98765')); // 121932631236091935555555654321
+  </script>
+</body>
+</html>

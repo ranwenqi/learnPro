@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>冒泡排序</title>
+  </head>
+  <body></body>
+  <script>
+    // 冒泡排序是相邻的两项做对比，例如把大的移到左边小的在右边。我的问题是如何
+    //   let arr1 = [5, 2, 3, 8, 10, 0, -1];
+    // function pop (arr) {
+    //   let i = 0;
+    //   for(let j = 0; j < arr.length; j++) {
+    //     while(i < arr.length) {
+    //     if(arr[i] > arr[i+1]) {
+    //       [arr[i]] = [arr[i+1]];
+    //     }
+    //     i++;
+    //   }
+    //   }
+    //   return arr;
+    // }
+    // console.log(pop(arr1));
+    // 这其实不是冒泡的思想这个其实是第一位的数字去跟其他的位置做比较，满足条件就交换位置。之前理解的没错
+    // function BubbleSort(arr) {
+    //   var i, j, temp;
+    //   for (i = 0; i < arr.length - 1; i++) {
+    //     // 第几个位置的意思，第一次循环找第一个位置的数字
+    //     for (j = i + 1; j < arr.length; j++) {
+    //       // j=i+1,i之前的位置都已经确认好了不需要再计算了
+    //       if (arr[i] > arr[j]) {
+    //         temp = arr[j];
+    //         arr[j] = arr[i];
+    //         arr[i] = temp;
+    //       }
+    //     }
+    //   }
+    //   return arr;
+    // }
+    // var arr = [10, 7, 9, 11, 22, 33, 4, 2, 0, 1000];
+    // console.log(BubbleSort(arr));
+
+    //从小到大 冒泡的优化代码 
+    function BubbleSort(arr) {
+      let i, j, temp;
+      let flag = true; //flag进行标记
+      for (i = 0; i < arr.length - 1 && flag; i++) {
+        //若flag为false则退出循环
+        flag = false; //初始化为false
+        for (j = arr.length - 1; j > i; j--) { // j>i避免之前已经排列的数组再一次计算,i慢慢变大，j慢慢变小，这样就不会重复
+          console.log(arr[j], arr[j - 1]);
+          if (arr[j] < arr[j - 1]) {
+            // j为从前往后循环
+            [arr[j], arr[j - 1]] = [arr[j - 1], arr[j]]
+            flag = true; //如果有数据交换则为true
+          }
+        }
+        if(!flag) {
+            break;
+          }
+      }
+      return arr;
+    }
+    var arr=[10,7,9,11,22,33,4,2,0,1000];
+    console.log(BubbleSort(arr));
+  </script>
+</html>

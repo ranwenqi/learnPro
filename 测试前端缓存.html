@@ -29,25 +29,15 @@
 
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function(){
-
-
         if( xhr.readyState == 4){
-
-
             if( xhr.status >= 200 && xhr.status < 300 || xhr.status == 304){
-
-                // info.innerHTML = xhr.responseText;
                 console.log(xhr.responseText);
-
             }
-
         }
-
     };
 
     xhr.open("get","http://127.0.0.1:8888");
-    // xhr.setRequestHeader('cache-control', 'public, max-age=1209600');
-
+    xhr.setRequestHeader('if-None-Match', 'aaa');
     xhr.send(null);
 </script>
 </body>

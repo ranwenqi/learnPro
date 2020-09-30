@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>02</title>
+  <style>
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <p>{{ foo }}</p>
+    <!-- 这里的 `foo` 不会更新！ -->
+    <button v-on:click="foo = 'baz'">Change it</button>
+    <span v-once>这个将不会改变: {{ msg }}</span>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    var obj = {
+      foo: 'bar',
+      msg: 'ranwenqi'
+    }
+
+    // Object.freeze(obj)
+
+    let vm = new Vue({
+      el: '#app',
+      data: obj
+    })
+    vm.$watch('foo', function (newValue, newValue) {
+      console.log('newValue, newValue');
+    })
+  </script>
+</body>
+
+</html>

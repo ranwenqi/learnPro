@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+       .fade {
+            -webkit-animation-name: fade;
+            animation-name: fade;
+            -webkit-animation-duration: 3s;
+            animation-duration: 3.75s;
+            -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+        }
+        @-webkit-keyframes fade {
+            0% {opacity: 0}
+            10% {opacity: 1}
+            90% {opacity: 1}
+            100% {opacity: 0}
+        }
+        @keyframes fade {
+            0% {opacity: 0}
+            10% {opacity: 1}
+            90% {opacity: 1}
+            100% {opacity: 0}
+        }
+    </style>
+</head>
+<body>
+<div class="fade">记事已保存</div>
+</body>
+</html>

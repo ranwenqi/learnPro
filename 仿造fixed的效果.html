@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>仿造fixed效果
+  </title>
+  <style>
+    #big {
+      width: 80%;
+      height: 800px;
+      position: relative;
+      border: 2px solid green;
+    }
+    #content {
+      width: 100%;
+      height: 300px;
+      background: blue;
+      overflow: auto;
+      border: 1px solid;
+    }
+    #fix {
+      width: 100%;
+      height: 100px;
+      background: red;
+      position: absolute;
+      bottom: 0px;
+      border: 1px solid palevioletred;
+    }
+  </style>
+</head>
+<body>
+  <div id="big">
+    <div id="content">
+      <div style="background: lightblue;width: 100%;height: 200px;"></div>
+      <div style="background: lightcoral;width: 100%;height: 200px;"></div>
+      <div style="background: lightcyan;width: 100%;height: 200px;"></div>
+    </div>
+    <div id="fix">
+
+    </div>
+  </div>
+  
+</body>
+</html>

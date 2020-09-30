@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>对这几个元素的理解</title>
+  <style>
+    #box {
+      width: 300px;
+      height: 300px;
+      margin: 0 auto;
+      background: orange;
+      overflow: auto;
+      margin-top: 200px;
+      border: 1px solid;
+    }
+  </style>
+</head>
+<body>
+  <!-- 一个元素的 scrollTop值是这个元素的内容顶部（卷起来的）到它的视口可见内容（的顶部）的距离的度量。当一个元素的内容没有产生垂直方向的滚动条，那么它的 scrollTop 值为0。 -->
+  <!-- scrollTop: 上面这个官方的解释真是🐂🍺了，生涩难懂。如果一个元素有滚动条，scrollTop就是它的滚动条滚动的距离 -->
+  <!-- scrollHeight: 元素内容高度-->
+  <!-- clientHeight: 可视内容高度(也就是div的高度) -->
+  <!-- clientTop: 是border的宽度（太神奇了，万万没想到） -->
+  <div id="box">
+    <div style="width:100px;margin: 0 auto;height: 200px;background:green;"></div>
+    <div style="width:100px;margin: 0 auto;height: 200px;background:pink;"></div>
+    <div style="width:100px;margin: 0 auto;height: 200px;background:red;"></div>
+    <div style="width:100px;margin: 0 auto;height: 200px;background:palegreen;"></div>
+  </div>
+  <script>
+    let box =  document.getElementById('box')
+    box.addEventListener('scroll', () => {
+      console.log('scrollTop', box.scrollTop)
+      console.log('scrollHeight', box.scrollHeight)
+      console.log('clientTop', box.clientTop)
+    })
+  </script>
+</body>
+</html>

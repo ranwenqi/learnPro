@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>正则过滤</title>
+</head>
+<body>
+  
+  <script>
+    let content = '<p><a id="geoCard_0" class="poiCard" contenteditable="false" style="display: inline-block;background:#f5f6f7;text-decoration:none;" href="https://apis.map.qq.com/uri/v1/marker?referer=qqmail&amp;marker=coord:22.316555,114.174328;title:彌敦道(旺角地铁站);addr:香港特别行政区油尖旺区彌敦道(旺角地铁站)"><img style="height:26px;width:26px;vertical-align: middle;padding-right:6px;" src="https://rescdn.qqmail.com/qqmail/images/compose_location_logo.png">彌敦道(旺角地铁站)</a></p><p><br></p><p><a id="geoCard_1" class="poiCard" contenteditable="false" style="display: inline-block;background:#f5f6f7;text-decoration:none;" href="https://apis.map.qq.com/uri/v1/marker?referer=qqmail&amp;marker=coord:22.315489,114.173581;title:旺角朗豪坊;addr:香港特别行政区油尖旺区旺角亚皆老街8号"><img style="height:26px;width:26px;vertical-align: middle;padding-right:6px;" src="https://rescdn.qqmail.com/qqmail/images/compose_location_logo.png">旺角朗豪坊</a></p><p><br></p><p><a id="geoCard_2" class="poiCard" contenteditable="false" style="display: inline-block;background:#f5f6f7;text-decoration:none;" href="https://apis.map.qq.com/uri/v1/marker?referer=qqmail&amp;marker=coord:22.315489,114.173581;title:旺角朗豪坊;addr:香港特别行政区油尖旺区旺角亚皆老街8号"><img style="height:26px;width:26px;vertical-align: middle;padding-right:6px;" src="https://rescdn.qqmail.com/qqmail/images/compose_location_logo.png">旺角朗豪坊</a></p><p><br></p><p><br></p>'
+    function test(index) {
+      let reg = new RegExp(`<a\.*?id="geoCard_${index}"\.*?<\/a>`)
+    }
+    test(1)
+    
+
+    // let reg1 = /<a.*?id="geoCard_1".*?<\/a>/
+    // console.log('reg1', reg1)
+    // console.log('字面量', content.match(reg1))
+  </script>
+</body>
+</html>

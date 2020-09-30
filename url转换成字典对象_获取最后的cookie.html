@@ -90,10 +90,9 @@
     }
     // getHashParameter(url);
     //截取cookie的最后的一个key值
-    var cookie ='name=value;path=path;domain=domain';
+    let cookie ='name=value;path=path;domain=domain';
     function parseCookie(cookie) {
-        debugger;
-            var pattern = /([^=]+)=([^;]+);?\s*/g,
+            let pattern = /([^=]+)=([^;]+);?\s*/g,
             result,
             value = {};
         while((result = pattern.exec(cookie)) != null) {
@@ -101,6 +100,6 @@
         }
         return value;
     }
-    parseCookie(cookie);
+    console.log(parseCookie(cookie));
 </script>
 </html>

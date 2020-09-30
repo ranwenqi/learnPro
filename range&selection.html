@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>区域选择</title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+    <p id="geoCard">我的世界</p>
+    <script>
+      let range = document.createRange()
+      let referenceNode = document.getElementById('geoCard')
+      range.selectNodeContents(referenceNode)
+      let selection = window.getSelection()
+      selection.removeAllRanges()
+      selection.addRange(range)
+      range.collapse(true)
+    </script>
+</body>
+</html>

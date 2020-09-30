@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+
+<body>
+  <script>
+    // var a = 'function';
+    // var a;
+    // console.log(a);
+    // getName();
+    // var getName = function(){
+    // console.log(2);
+    // }
+    // function getName (){
+    // console.log(1);
+    // }
+
+    //     foo(); 
+    // var foo;
+    // function foo(){
+    //  console.log(1);
+    // }
+    // foo=function(){
+    //  console.log(2);
+    // }
+    // var scope='golbal';
+    // function f(){
+    // console.log(scope);
+    // var scope='local';
+    // console.log(scope);
+    // } 
+    // f();
+    // var scope='golbal';
+    // function f(){
+    // var scope;
+    // console.log(scope);
+    // scope='local';
+    // console.log(scope);
+    // }
+    // f();
+
+    // var a = 10;
+    // function test(){  
+    // 	a = 100;
+    // 	console.log(a); 
+    // 	var a; 
+    // 	console.log(a);
+    // }
+    // test();
+    // console.log(a); 
+    // function test () {
+    //     var a;
+    //     a=100;
+    //     console.log(a);//100
+    //     console.log(a);//100
+    // }
+    // var a = 10;
+    // function test(){  //hoist 声明提前
+    // 	a = 100;
+    // 	console.log(a);  //100
+    // 	var a;  //坑  这里是声明，会提前，会提前到当前作用域最前面，也就是这个函数的开始处，成为一个函数内的局部变量
+    // 	console.log(a);  //100
+    // }
+
+    // test();
+    // console.log(a); //
+    // var a = 10;
+    // function test(){  //hoist 声明提前
+    // 	a = 100;
+    // 	console.log(a);  //100
+    // 	var a;  //坑  这里是声明，会提前，会提前到当前作用域最前面，也就是这个函数的开始处，成为一个函数内的局部变量
+    // 	console.log(a);  //100
+    // }
+
+    // test();
+    // console.log(a); //
+    // var a = 10;
+
+    // function test() { //hoist 声明提前
+    //   a = 100;
+    //   console.log(a); //100
+    //   var a; //坑  这里是声明，会提前，会提前到当前作用域最前面，也就是这个函数的开始处，成为一个函数内的局部变量
+    //   console.log(a); //100
+    // }
+
+    // test();
+    // console.log(a); //
+
+
+    // var foo = {
+    //   n: 1
+    // };
+
+    // (function (foo) {
+    //   console.log(foo.n);
+    //   foo.n = 3;
+    //   var foo = {
+    //     n: 2
+    //   };
+    //   console.log(foo.n);
+    // })(foo);
+
+    // console.log(foo.n);
+    // function f1(a) {
+    //   console.log(a);
+    //   var a = 1;
+    //   console.log(a);
+    //   console.log(arguments[0])
+    // }
+    // f1(10)
+    // var a = 10;
+
+    // function test() {
+    //   a = 100;
+    //   console.log(a);
+    //   console.log(this.a);
+    //   var a;
+    //   console.log(a);
+    // }
+    // test();
+    // var a = 100;
+
+    // function test() {
+    //   console.log(a);
+    //   var a = 10;
+    //   console.log(a);
+    // }
+    // test();
+    // var a = 100;
+
+    // function test() {
+    //   console.log(a); //100
+    //   a = 10;
+    //   console.log(a); //10
+    // }
+    // test();
+    // console.log(a); //10
+    // function setName(obj) {
+    //   obj.name = 'aaa';
+    //   var obj = new Object();
+    //   obj.name = 'ccc';
+    //   return obj;
+    // }
+    // var person = new Object();
+    // person.name = 'bbb';
+    // var newPerson = setName(person);
+    // console.log(person.name + ' | ' + newPerson.name);
+    // var a = {
+    //   "x": 1
+    // };
+    // var b = a;
+    // a.x = 2;
+    // console.log(b.x); //2
+
+
+    // a = {
+    //   "x": 3
+    // };
+    // console.log(b.x); //2
+    // a.x = 4;
+    // console.log(b.x); //2
+    var a = {
+      n: 1
+    };
+    var b = a;
+    a.x = a = {
+      n: 2
+    };
+
+    console.log(a.x);
+    console.log(b.x);
+  </script>
+</body>
+
+</html>

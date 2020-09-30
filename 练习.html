@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>练习</title>
+</head>
+<body>
+  
+<script>
+
+var url = "http://www.akmsg.com/WebDemo/URLParsing.html#top?username=admin&pwd=123456";
+function sub (url) {
+  let arr = [];
+  let obj = {};
+  let str = url.slice(url.indexOf('?')+1); // 坑一：截取的时候注意不能把？截进去，从？后面一位开始截
+  arr = str.split('&');
+  for(let i = 0; i < arr.length; i++) {
+    arr[i] = arr[i].split('=');
+  }
+  console.log(arr);
+  let j = 0;
+  while(j < arr.length){
+    obj[arr[j][0]] = arr[j][1];
+    j++;
+  }
+  return obj;
+}
+console.log(sub(url));
+</script>
+</body>
+</html>

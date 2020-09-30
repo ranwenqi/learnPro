@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    span {
+      overflow: hidden;
+      text-overflow:ellipsis;
+      white-space: nowrap;
+      display: block;
+      width: 100px;
+      margin-bottom: 100px;
+    }
+    .test {
+      width: 100px;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      overflow: hidden;
+    }
+
+  </style>
+</head>
+<body>
+  <!-- 测试出: text-overflow:ellipsis;只在display: block的情况下生效 -->
+  <span>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</span>
+  <!-- 多行文本溢出显示省略号 不能在span标签中实现-->
+  <p class="test">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</p>
+
+</body>
+</html>
