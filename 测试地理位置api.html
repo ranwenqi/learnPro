@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>测试地理位置</title>
+</head>
+<body>
+   <script>
+     console.log('navigator.geolocation', navigator.geolocation)
+      navigator.geolocation.getCurrentPosition(function(position) {
+        console.log(position)
+      })
+   </script>
+</body>
+</html>

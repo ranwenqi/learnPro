@@ -1,0 +1,26 @@
+<html>
+<head>
+<title>oncopy示例演示</title>
+
+<script>
+  function log(txt)
+  {
+    document.getElementById("log").appendChild(document.createTextNode(txt + "\n"));
+  }
+</script>
+</head>
+
+<body>
+<div id="uncopy">试着复制这句话</div>
+<div oncopy="return false;">试着复制这句话ahahhahaha</div>
+<a id="geoCard_0" class="poiCard" oncopy="return false;" contenteditable="false" style="display: inline-block;background:#f5f6f7;text-decoration:none;" href="https://apis.map.qq.com/uri/v1/marker?referer=qqmail&amp;marker=coord:39.917990069,116.397026905;title:北京故宫博物院;addr:北京市东城区景山前街4号" target="_blank"><img style="height:26px;width:26px;vertical-align: middle;padding-right:6px;" src="https://rescdn.qqmail.com/qqmail/images/compose_location_logo.png">北京故宫博物院</a>
+
+
+<h3>Log</h3>
+<textarea rows="15" cols="80" id="log" readonly="true"></textarea>
+<script>
+  // document.getElementById('uncopy').addEventListener('copy', function() {return false})
+  document.getElementById('uncopy').oncopy = 'return false'
+</script>
+</body>
+</html>
