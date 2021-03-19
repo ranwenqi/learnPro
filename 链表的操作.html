@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>链表</title>
+</head>
+<body>
+  
+<script>
+  // 创建链表 
+  function Node(element) {
+    this.element = element;
+    this.next = null;
+  }
+  function LLink() {
+    this.head = new Node('head');
+    this.find = find;
+    this.insert = insert;
+    this.display = display;
+    this.findPrevious = findPrevious;
+    this.remove = remove;
+  }
+
+   function find(item) {
+    let currNode = this.head;
+    // 此处报错，找不到null的element,原因是因为head节点的next只是null,没有再其他地方赋值
+      while(currNode.element != item) {
+        currNode = currNode.next;
+        if(currNode == null) { // 故在此添加判断当前节点是否为null的判断
+          break;
+        }
+      }
+    return currNode;
+   }
+    
+   function insert(newElement, item) {
+     let newNode = new Node(newElement);
+     let current = this.find(item);
+     newNode.next = current.next;
+     current.next = newNode;
+   }
+
+   function display() {
+     let current = this.head;
+     while(current.next != null) {
+      console.log(current.next.element);
+      current = current.next;
+     }
+   }
+
+   function findPrevious(item) {
+    // 寻找item的前驱节点
+     let current = this.head;
+     while((current.next.element != item)&&(current.next != null)) {
+      current = current.next;
+     }
+     return current;
+   }
+
+   function remove(item) {
+    let current = this.find(item);
+    let preNode = this.findPrevious(item);
+    preNode.next = preNode.next.next;
+    // 释放内存空间
+    current.next = null;
+    console.log(current);
+   }
+
+   let citist = new LLink();
+   citist.insert('北京', 'head');
+   citist.insert('上海', '北京');
+   citist.insert('广州', '上海');
+   citist.insert('深圳', '广州');
+   citist.remove('广州');
+   citist.display();
+
+</script>
+</body>
+</html>

@@ -25,34 +25,18 @@
 <div class="em"></div>
 <!--函数节流的基本思想是设置一个定时器，在指定时间间隔内运行代码时清楚上一次的定时器，并设置另一个定时器，知道函数请求停止并超过时间间隔才会执行。-->
 <script>
-<<<<<<< HEAD
-    num = 1;
-    function scrollFn(){
-        num++;
-        document.getElementsByClassName('rem')[0].style.width=num+'px';
-    }
-    function throttle(method,context){
-=======
     function scrollFn(){
         console.log(1)
     }
     function throttle(method,context){
-        debugger;
->>>>>>> 201ac2c346ba9404eac53700c8e8349d5197718b
         clearTimeout(method.tId);
         method.tId=setTimeout(function(){
-            method.call(context)//setTimeout是windows的方法，如果不用call指向this，method一直都是在windows环境下调用。
         },300)
     }
     window.onscroll=function(){
-<<<<<<< HEAD
-        throttle(scrollFn, window)
-    }
-=======
         throttle(scrollFn)
     }
 
->>>>>>> 201ac2c346ba9404eac53700c8e8349d5197718b
 </script>
 </body>
 </html>

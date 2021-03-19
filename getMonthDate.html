@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function demo(year, month) {
+        let list = []
+        if (!year && !month) {
+          const today = new Date()
+          year = today.getFullYear()
+          month = today.getMonth() + 1
+        }
+
+        // 获取当月第一天日期与周几
+        const firstDate = new Date(year, month - 1, 1).getDate()
+        const firstday = new Date(year, month - 1, 1).getDay()
+        let weekDay = firstday
+        const frontCompletion = firstday
+        // 获取上个月的最后一天日期与周几
+        const lastDateOfLastMonth = new Date(year, month - 1, 0).getDate()
+        const lastDayOfLastMonth = new Date(year, month - 1, 0).getDay()
+
+        // 获取当月最后一天日期与周几
+        const lastDate = new Date(year, month, 0).getDate()
+        const lastDay = new Date(year, month, 0).getDay()
+        const backCompletion = 6 - lastDay
+
+        // 获取下月第一天日期与周几
+        const firstDateOfNextMonth = new Date(year, month, 1).getDate()
+        const firstDayOfNextMonth = new Date(year, month, 1).getDay()
+
+        if (frontCompletion) {
+          for (let i = 0; i < frontCompletion; i++) {
+            let dateObj = structureDateObj(month - 1 ? year : year - 1, month - 1 || 12, lastDateOfLastMonth - frontCompletion + i + 1, lastDayOfLastMonth - frontCompletion + i + 1)
+            list.push(dateObj)
+          }
+        }
+
+        for (let i = 0; i < lastDate; i++) {
+          let dateObj = structureDateObj(year, month, i + 1, weekDay)
+          list.push(dateObj)
+          weekDay += 1
+          if (weekDay === 7) {
+            weekDay = 0
+          }
+        }
+
+        if (backCompletion) {
+          for (let i = 0; i < backCompletion; i++) {
+            let dateObj = structureDateObj(month === 12 ? year + 1 : year, month === 12 ? 1 : month + 1 , i + 1, firstDayOfNextMonth + i, )
+            list.push(dateObj)
+          }
+        }
+      }
+
+      function structureDateObj(year, month, date, week) {
+        return { year, month, date, week }
+      }
+
+      demo()
+    </script>
+  </body>
+</html>

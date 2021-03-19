@@ -1,14 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>http&http1&https</title>
-    <style>
-    </style>
+  <meta charset="UTF-8">
+  <title>http&http1&https</title>
+  <style>
+  </style>
 </head>
+
 <body>
-<a href="https://blog.csdn.net/melovemingming/article/details/82792824"></a>
-<script>
-</script>
+  <a href="https://blog.csdn.net/melovemingming/article/details/82792824"></a>
+  <script>
+    console.time('a')
+
+    function go(n) {
+      var item = 0;
+      for (var i = 1; i <= n; i++) {
+        item += i;
+      }
+      return item;
+    }
+    console.timeEnd('a')
+
+    console.time('b')
+
+    function go2(n) {
+      var item = n * (n + 1) / 2
+      return item;
+    }
+    console.timeEnd('b')
+
+    function Fibonacci(n) {
+      if (n <= 1) {
+        return n;
+      } else {
+        return Fibonacci(n - 1) + Fibonacci(n - 2);
+      }
+    }
+
+    console.time('b')
+    Fibonacci(20)
+    console.timeEnd('b')
+    go(1000)
+    go2(1000)
+  </script>
 </body>
+
 </html>

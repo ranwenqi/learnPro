@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>promiseRetry</title>
+</head>
+<body>
+  
+
+
+  <script>
+    function pro () {
+      return new Promise((resolve, reject) => {
+        console.log('========我是异步请求来的数据');
+        reject(new Error('fail'));
+      })
+    }
+    function promiseRetry(getData, times, delay) {
+    return new Promise(function(resolve, reject) {
+       function attempt () {
+        getData().then(resolve).catch(function(erro) {
+        console.log(`还有 ${times} 次尝试`)
+          if (0 == times) {
+            reject(erro)
+          } else {
+            times--;
+            setTimeout(attempt(), delay)
+          }
+        })
+      }
+       attempt()
+    })
+  }
+  promiseRetry(pro, 3, 1000);
+</script>
+</body>
+</html>

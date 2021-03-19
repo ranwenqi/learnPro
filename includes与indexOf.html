@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>includes与indexOf的区别</title>
+</head>
+<body>
+  
+</body>
+<script>
+  let arr = [1,2,3,4,5];
+  let seq1 = arr.includes(1);//返回true或者fasle
+  let seq2 = arr.indexOf(0);//indexof返回当前元素的坐标,如果没有就返回-1
+  console.log('seq1:',seq1);
+  console.log('seq2:',seq2);
+//   let ary = [NaN];
+// console.log(ary.indexOf(NaN))//-1
+// console.log(ary.includes(NaN))//true
+// var ary = [,,];
+// console.log(ary.indexOf(undefined))//-1
+// console.log(ary.includes(undefined))//true
+// var ary = [,,];
+// console.log(ary.indexOf(undefined))//-1
+// console.log(ary.includes(undefined))//true
+let arr1 = new Array(3);
+console.log(arr1);
+var ary = [,,,];//这种数组叫做稀疏数组，只有长度并没有项，每一项都是undefined;
+console.log(ary);
+</script>
+</html>

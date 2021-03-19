@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>给定一个整数数组和一个目标值，找出数组中和为目标值的两个数，要求时间复杂度为 O(n)。</title>
+</head>
+<body>
+  <!-- 给定一个整数数组和一个目标值，找出数组中和为目标值的两个数，要求时间复杂度为 O(n)。 -->
+  
+</body>
+<script>
+  function pairSum (array, target) {
+    const hashMap = {}
+
+    array.forEach((item) => {
+      hashMap[item] = item
+    })
+
+    const pairs = []
+
+    if (target % 2 === 0) {
+      for (let i = 0; i <= target / 2; i ++) {
+        pairs.push([i, target - i])
+      }
+    } else {
+      for (let i = 0; i <= Math.floor(target / 2); i ++) {
+        pairs.push([i, target - i])
+      }
+    }
+
+    const result = []
+    pairs.forEach((pair) => {
+      const a = pair[0]
+      const b = pair[1]
+
+      if (hashMap[a] !== undefined && hashMap[b] !== undefined) {
+        result.push([a, b])
+        hashMap[a] = undefined
+        hashMap[b] = undefined
+      }
+    })
+}
+console.log(pairSum([ 3, 2, 3, 1], 4))
+</script>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>topology</title>
+  </head>
+
+  <body>
+    <p>
+      关于对拓扑算法的思路分析历程：
+      每一个点都有一些属性：是否依赖别人，依赖谁，是否执行完成，优先级约束调度。
+      point: { depends: [point1, point2], isFinish: Boolean };
+      <img style="width:100%;height:200px;" src="./3.png" />
+    </p>
+  </body>
+  <script>
+    // 首先交代处理数组中的每一个点的关系以及初始状态
+    // let init = (arr) => {
+    //   arr.reduce((acculate, item, index) => {
+    //     let obj = Object.create(null);
+    //     obj.name = item;
+    //     //此时如何去选择关系呢？第三个需要在第一个与第二个都结束的情况下执行，很难表示这种关系，[{name: "Data Structures", depend: ['cs1', 'cs2']}];
+    //     //那以下的算法是如何表示这种关系的呢？
+    //     // 有一个stack？它的作用是什么呢？感觉大有来头，原来stack只是顶点完成后压入栈而已，就是一个结果的盒子。
+    //     //topSort:此函数1.设置排序进程。2.调用辅助函数。3.显示处理好的结果。仅此而已。
+    //此函数的visited：用来表示已经拜访过的点，已经有stack了，为什么需要visited的呢？
+    //     //topSortHelper:递归函数
+    //     // 还是很模糊如何去找依赖关系，也就是说的串行与并行关系，如何去表达？
+    //     //
+
+    //   }, [])
+    // }
+
+    var vertices = [
+      'CS1',
+      'CS2',
+      'Data Structures',
+      'Assembly Language',
+      'Operating Systems',
+      'Algorithms'
+    ];
+    // console.log(this.vertices); //undefined,let声明的值不会挂载this对象(当前作用域上面吗？（作用域就是当前变量在那个对象上运行的事儿，js是面向对象的语言，所以一切名词都可以用对象来解释)
+    let topSort = function() {
+      var stack = [];
+      var visited = [];
+      // 1.第一步先给visited数组与排序一样长度并且值都为false。
+      for (var i = 0; i < this.vertices.length; i++) {
+        visited[i] = false; //为什么这么直接添加添加不上呢？问题不在这里 i<this.vertices.length,才是对的。(这个问题我觉得我已经遇到三次了)
+      }
+      // 2.当visited当前值为false的时候就调用topSortHelper函数，此时我还在思考这两个函数是如何表达点之间的关系的，没事，继续往下看吧！
+      for (var i = 0; i < this.vertices.length; i++) {
+        if (visited[i] == false) {
+          this.topSortHelper(i, visited, stack);
+        }
+      }
+      for (var i = 0; i < stack.length; i++) {
+        if (stack[i] != undefined && stack[i] != false) {
+          print(this.vertexList[stack[i]]);
+        }
+      }
+    };
+    // 第二次出现let声明的变量在this上找不到的情况了，我在想是否是chrom还不认识let吗？还不兼容es6的let?我觉得这个可能性比较小。此问题先放在这里，不要因小失大。
+    // v: 是当前vertices当前项的下标，visited这个数组，stack保存已完成的数组
+    var topSortHelper = function(v, visited, stack) {
+      // 1.首先改变visited当前项的状态。
+      visited[v] = true;
+      // this.adj是什么数组？关键就在于adj这个数组，adj就是关系数组，
+      //这两个函数并不是重点，重点是graph图，得使用到建模。
+      for (var w in this.adj[v]) {
+        if (!visited[w]) {
+          this.topSortHelper(visited[w], visited, stack);
+        }
+      }
+      stack.push(v);
+    };
+    // topSort();
+
+    // 实现graph图形，建模。
+    //构建图
+    //图类 v:顶点的数量,这个算法通过class类来实现的，这解决了我一直以来对于class或者构造函数没有用的问题，Graph类其实是一种表达关系，addEdge函数通过在相互的数组里保存对方来表示边的关系。目前为止没有难点，难点应该是在后面的优化边的重复问题。难点应该是在思想上的问题。
+    function Graph(v) {
+      // vertices记录顶点数量
+      this.vertices = v;
+      this.edges = 0;
+      //adj:表示邻点的关系数组，二维数组
+      this.adj = [];
+      //让每一个顶点有个初始化空数组，用来存储相邻点。
+      for (var i = 0; i < this.vertices; ++i) {
+        this.adj[i] = [];
+        this.adj[i].push('');
+      }
+      this.marked = [];
+      for (var i = 0; i < this.vertices; ++i ) {
+        this.marked[i] = false;
+      }
+      // this.marked = [false, false, flase,...];
+    }
+    Graph.prototype.addEdge = addEdge;
+    Graph.prototype.showGraph = showGraph;
+    Graph.prototype.dfs = dfs;
+
+    // addEdge没有任何限制条件，会出现重复添加点的情况[0,3,3,3];这样子的。
+    function addEdge(v, w) {
+      this.adj[v].push(w);
+      this.adj[w].push(v);
+      this.edges++;
+    }
+
+    function showGraph() {
+      for (var i = 0; i < this.vertices; ++i) {
+        var str = i + ' -> ';
+        for (var j = 0; j < this.vertices; ++j) {
+          if (this.adj[i][j] != undefined) {
+            str = str + this.adj[i][j] + ' ';
+          }
+        }
+        console.log(str);
+      }
+    }
+    // g是Graph的实例
+    g = new Graph(5);
+    g.addEdge(0, 1);
+     g.addEdge(0, 2);
+     g.addEdge(1, 3);
+     g.addEdge(2, 4);
+     g.showGraph();
+    g.dfs(0);
+    // 深度优先算法：
+    //   深度优先搜索算法比较简单:访问一个没有访问过的顶点，将它标记为已访问，再递归地
+    // 去访问在初始顶点的邻接表中其他没有访问过的顶点，这样的话就可以排序。要让该算法运行，需要为 Graph 类添加一个数组，用来存储已访问过的顶点，将它所有元素的值全部初始化为 false。
+    // dfs:思想太强大了，整个思路：首先将第几个点传值，首先将他的marked数组中的值变成true,同时找到这个点相应的关系顶点数组，如果关系被访问则不再拜访，没有被访问，则递归调用dfs，将它的marked的状态标记为true，并且访问他的关系数组，就这么一层一层去找，就达到了深度优先的目的。adj[0] => marked[true, false, false...];=> adj[0] => ['', 3, 2,5];=> 循环此数组，'' => this.marked['0'](for in循环数组时会将''转换为'0')=true => this.marked[3]=false;=>调用dfs[3]的相关的关系。这样dfs就能找到与一些列的关系
+    //如果一个逻辑里面又有递归又有循环就会很复杂，切记不要掉以轻心。
+    // v代表的是第几个顶点，如果要找到所有的关系，建议初始顶点上传0.
+    function dfs(v) {
+      debugger;
+    // 第几个顶点的值变成true
+      this.marked[v] = true;
+      if (this.adj[v] != undefined) {
+           console.log("Visited vertex:  " + v);
+        }
+      //vertex:顶点
+      // 比如this.adj[3] = [0,3]; this.marked[0] = false; 则表明当前顶点未被访问，递归调用this.dfs(3);
+      for (var w in this.adj[v]) {
+        if (!this.marked[w]) {
+          this.dfs(w);
+        }
+      }
+    }
+
+  </script>
+</html>

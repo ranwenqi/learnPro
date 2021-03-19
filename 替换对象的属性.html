@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>替换对象的属性</title>
+</head>
+<body>
+  <script>
+    let root = {
+      id: 1,
+      name: '广州研发部',
+      subDepartments: [
+        {
+          id: 2,
+          name: "网盘",
+          subDepartments: [
+            {
+              id: 3,
+              name: "开发一组",
+              subDepartments: []
+            }
+          ]
+        }
+      ]
+    }
+    function digui(root) {
+      const obj = replaceProp(root)
+      if (obj.children && obj.children.length) {
+        obj.children.forEach(item => {
+          digui(item)
+        })
+      }
+    }
+    digui(root)
+    console.log("result: root", root)
+    
+
+    function replaceProp(obj) {
+      obj.label = obj.name
+      obj.children = obj.subDepartments
+      delete obj.name
+      delete obj.subDepartments
+      return obj
+    }
+  </script>
+</body>
+</html>
